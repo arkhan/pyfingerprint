@@ -23,6 +23,7 @@ def rightShift(n, x):
 
     return (n >> x & 0xFF)
 
+
 def leftShift(n, x):
     """
     Shifts a byte.
@@ -34,6 +35,7 @@ def leftShift(n, x):
 
     return (n << x)
 
+
 def bitAtPosition(n, p):
     """
     Gets the bit of n at position p.
@@ -43,13 +45,14 @@ def bitAtPosition(n, p):
     @return integer
     """
 
-    ## A bitshift 2 ^ p
+    # A bitshift 2 ^ p
     twoP = 1 << p
 
-    ## Binary AND composition (on both positions must be a 1)
-    ## This can only happen at position p
+    # Binary AND composition (on both positions must be a 1)
+    # This can only happen at position p
     result = n & twoP
     return int(result > 0)
+
 
 def byteToString(byte):
     """
@@ -60,6 +63,7 @@ def byteToString(byte):
     """
 
     return struct.pack('@B', byte)
+
 
 def stringToByte(string):
     """

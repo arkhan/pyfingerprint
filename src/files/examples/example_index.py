@@ -12,14 +12,13 @@ All rights reserved.
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 
-## Shows the template index table
-##
+# Shows the template index table
 
-## Tries to initialize the sensor
+# Tries to initialize the sensor
 try:
     f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
 
-    if ( f.verifyPassword() == False ):
+    if (f.verifyPassword() == False):
         raise ValueError('The given fingerprint sensor password is wrong!')
 
 except Exception as e:
@@ -27,18 +26,20 @@ except Exception as e:
     print('Exception message: ' + str(e))
     exit(1)
 
-## Gets some sensor information
+# Gets some sensor information
 print('Currently stored templates: ' + str(f.getTemplateCount()))
 
-## Tries to show a template index table page
+# Tries to show a template index table page
 try:
-    page = raw_input('Please enter the index page (0, 1, 2, 3) you want to see: ')
+    page = raw_input(
+        'Please enter the index page (0, 1, 2, 3) you want to see: ')
     page = int(page)
 
     tableIndex = f.getTemplateIndex(page)
 
     for i in range(0, len(tableIndex)):
-        print('Template at position #' + str(i) + ' is used: ' + str(tableIndex[i]))
+        print('Template at position #' + str(i) +
+              ' is used: ' + str(tableIndex[i]))
 
 except Exception as e:
     print('Operation failed!')

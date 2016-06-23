@@ -13,14 +13,13 @@ import tempfile
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 
-## Reads image and download it
-##
+# Reads image and download it
 
-## Tries to initialize the sensor
+# Tries to initialize the sensor
 try:
     f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
 
-    if ( f.verifyPassword() == False ):
+    if (f.verifyPassword() == False):
         raise ValueError('The given fingerprint sensor password is wrong!')
 
 except Exception as e:
@@ -28,20 +27,20 @@ except Exception as e:
     print('Exception message: ' + str(e))
     exit(1)
 
-## Gets some sensor information
+# Gets some sensor information
 print('Currently stored templates: ' + str(f.getTemplateCount()))
 
-## Tries to read image and download it
+# Tries to read image and download it
 try:
     print('Waiting for finger...')
 
-    ## Wait that finger is read
-    while ( f.readImage() == False ):
+    # Wait that finger is read
+    while (f.readImage() is False):
         pass
 
     print('Downloading image (this take a while)...')
 
-    imageDestination =  tempfile.gettempdir() + '/fingerprint.bmp'
+    imageDestination = tempfile.gettempdir() + '/fingerprint.bmp'
     f.downloadImage(imageDestination)
 
     print('The image was saved to "' + imageDestination + '".')
